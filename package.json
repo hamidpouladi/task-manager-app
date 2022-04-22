@@ -32,9 +32,8 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "yarn lint",
       "yarn format",
-      "yarn test --watchAll=false --findRelatedTests --bail"
+      "yarn lint"
     ]
   }
 }

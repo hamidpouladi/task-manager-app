@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik';
 import { styled } from '@mui/material/styles';
 import { Input, Select, Textarea } from '@/components/form';
-import Button from '@/components/Button/iconButton';
+import Button from '@/components/button/iconButton';
 
 const Wrapper = styled('div')(() => ({
   width: '100%',

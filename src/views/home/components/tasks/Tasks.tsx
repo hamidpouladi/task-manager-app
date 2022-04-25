@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import Task from '@/components/task';
 
 const OuterWrapper = styled('div')(() => ({
   color: '#fff',
@@ -32,7 +33,7 @@ export default function Tasks() {
     <OuterWrapper>
       <Title>Tasks</Title>
       <InnerWrapper>
-        <div>test</div>
+        <Task />
       </InnerWrapper>
     </OuterWrapper>
   );

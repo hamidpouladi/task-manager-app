@@ -1,3 +1,9 @@
+import EditTaskForm from './components/editTaskForm';
+
 export default function EditPage() {
-  return <h1> Edit page</h1>;
+  return (
+    <div>
+      <EditTaskForm />
+    </div>
+  );
 }

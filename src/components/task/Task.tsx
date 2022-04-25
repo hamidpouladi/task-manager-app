@@ -60,7 +60,7 @@ export default function Task({ id, title, description, status }: TaskType) {
             minWidth: '10rem',
           }}
         />
-        <IconButton component={Link} to={`/edit?${id}`}>
+        <IconButton component={Link} to={`/edit?id=${id}`}>
           <EditIcon />
         </IconButton>
       </CardActions>

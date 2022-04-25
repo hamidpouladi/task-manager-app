@@ -1,14 +1,15 @@
 import BaseLayout from '@/layout/base';
 import HomePage from '@/views/home';
+import { StoreProvider } from '@/store';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <StoreProvider>
       <BaseLayout>
         <HomePage />
       </BaseLayout>
-    </div>
+    </StoreProvider>
   );
 }
 

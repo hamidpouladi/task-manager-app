@@ -1,7 +1,10 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { styled } from '@mui/material/styles';
-import { Input, Select, Textarea } from '@/components/form';
+import { v4 as uuidv4 } from 'uuid';
+import { Input, Textarea } from '@/components/form';
 import Button from '@/components/button/iconButton';
+import { useDispatch } from '@/store';
+import { add as addTask } from '@/store/actions/task';
 
 const Wrapper = styled('div')(() => ({
   width: '100%',
@@ -29,14 +32,28 @@ const initialValues: FormValues = {
 };
 
 export default function AddTaskForm() {
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (
+    values: FormValues,
+    action: FormikHelpers<FormValues>
+  ) => {
+    const id = uuidv4();
+    const task = {
+      id,
+      ...values,
+    };
+    dispatch(addTask(task));
+    action.resetForm();
+    return id;
+  };
   return (
     <Wrapper>
-      <Formik initialValues={initialValues} onSubmit={() => undefined}>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form>
           <Title>Add a new Task</Title>
           <Input name="title" placeholder="Title" />
           <Textarea name="description" placeholder="Description" />
-          <Select name="status" />
           <Button type="submit">Add</Button>
         </Form>
       </Formik>

@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import EditIcon from '@/assets/icons/edit.svg?component';
+import { Task as TaskType } from '@/types';
 
 const MuCard = styled(Card)(() => ({
   backgroundColor: '#fff',
@@ -25,15 +26,19 @@ const MuCard = styled(Card)(() => ({
   },
 }));
 
-export default function Task() {
+export default function Task({ title, description, status }: TaskType) {
   return (
     <MuCard>
       <CardContent sx={{ padding: 0 }}>
-        <Typography sx={{ fontSize: 18 }} color="text.primary" gutterBottom>
-          Word of the Day
+        <Typography
+          sx={{ fontSize: 18, fontWeight: 500 }}
+          color="text.primary"
+          gutterBottom
+        >
+          {title}
         </Typography>
         <Typography sx={{ fontSize: 13 }} variant="body2">
-          well meaning and kindly.
+          {description}
         </Typography>
       </CardContent>
       <CardActions
@@ -44,7 +49,7 @@ export default function Task() {
         }}
       >
         <Chip
-          label="Todo"
+          label={status}
           sx={{
             backgroundColor: '#0368a6',
             color: '#FFF',

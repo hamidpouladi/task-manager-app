@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import Task from '@/components/task';
+import { useStore } from '@/store';
 
 const OuterWrapper = styled('div')(() => ({
   color: '#fff',
@@ -29,11 +30,14 @@ const Title = styled('div')(() => ({
 }));
 
 export default function Tasks() {
+  const { tasks } = useStore();
   return (
     <OuterWrapper>
       <Title>Tasks</Title>
       <InnerWrapper>
-        <Task />
+        {tasks.map((task) => (
+          <Task key={task.id} {...task} />
+        ))}
       </InnerWrapper>
     </OuterWrapper>
   );

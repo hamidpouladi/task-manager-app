@@ -1,11 +1,13 @@
 import { useMemo } from 'react';
-import { useSearchParams, Navigate } from 'react-router-dom';
+import { useSearchParams, Navigate, useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { styled } from '@mui/material/styles';
 import { Input, Select, Textarea } from '@/components/form';
 import Button from '@/components/button/iconButton';
 import { useDispatch, useStore } from '@/store';
 import { update as updateTask } from '@/store/actions/task';
+import { Status } from '@/types';
+import trackTaskHistory from '@/utils/trackTaskHistory';
 
 const Wrapper = styled('div')(() => ({
   width: '100%',
@@ -23,12 +25,13 @@ const Title = styled('h1')(() => ({
 type FormValues = {
   title: string;
   description: string;
-  status: string;
+  status: Status;
 };
 
 export default function EditTaskForm() {
   const dispatch = useDispatch();
   const [params] = useSearchParams();
+  const redirect = useNavigate();
   const { tasks } = useStore();
 
   const handleSubmit = async (values: FormValues) => {
@@ -39,6 +42,7 @@ export default function EditTaskForm() {
       ...values,
     };
     dispatch(updateTask(task));
+    redirect('/');
   };
 
   const task = useMemo(
@@ -49,6 +53,8 @@ export default function EditTaskForm() {
   if (!task) {
     return <Navigate to="/404" />;
   }
+
+  const taskHistory = trackTaskHistory(task.status);
 
   const initialValues: FormValues = useMemo(
     () => ({
@@ -67,7 +73,14 @@ export default function EditTaskForm() {
           <Title>Edit Task</Title>
           <Input name="title" placeholder="Title" />
           <Textarea name="description" placeholder="Description" />
-          <Select name="status" />
+          <Select
+            name="status"
+            disabled={task.status === Status.Deployed}
+            options={taskHistory.map((status) => ({
+              label: status,
+              value: status,
+            }))}
+          />
           <Button type="submit">Edit</Button>
         </Form>
       </Formik>

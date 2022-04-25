@@ -27,18 +27,21 @@ const MuMenuItem = styled(MenuItem)<MenuItemProps>(() => ({
   fontSize: '1.4rem',
 }));
 
-interface Option {
+type Option = {
   label: string;
   value: string;
-}
-
-const options: Option[] = [{ label: 'Todo', value: 'todo' }];
+};
 
 type Props = {
   name: string;
+  options: Option[];
 };
 
-export default function Select({ name, ...props }: Props & TextFieldProps) {
+export default function Select({
+  name,
+  options,
+  ...props
+}: Props & TextFieldProps) {
   const [field, meta] = useField(name);
   return (
     <MuSelect

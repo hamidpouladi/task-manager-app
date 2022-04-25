@@ -5,6 +5,7 @@ import { Input, Textarea } from '@/components/form';
 import Button from '@/components/button/iconButton';
 import { useDispatch } from '@/store';
 import { add as addTask } from '@/store/actions/task';
+import { Status } from '@/types';
 
 const Wrapper = styled('div')(() => ({
   width: '100%',
@@ -22,13 +23,11 @@ const Title = styled('h1')(() => ({
 type FormValues = {
   title: string;
   description: string;
-  status: string;
 };
 
 const initialValues: FormValues = {
   title: '',
   description: '',
-  status: 'todo',
 };
 
 export default function AddTaskForm() {
@@ -41,6 +40,7 @@ export default function AddTaskForm() {
     const id = uuidv4();
     const task = {
       id,
+      status: Status.ToDo,
       ...values,
     };
     dispatch(addTask(task));

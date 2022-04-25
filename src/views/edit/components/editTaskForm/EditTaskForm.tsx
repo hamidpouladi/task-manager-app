@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useSearchParams, Navigate, useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import { styled } from '@mui/material/styles';
 import { Input, Select, Textarea } from '@/components/form';
 import Button from '@/components/button/iconButton';
@@ -27,6 +28,13 @@ type FormValues = {
   description: string;
   status: Status;
 };
+
+const validationSchema = Yup.object().shape({
+  title: Yup.string().required('This field is mandatory'),
+  description: Yup.string()
+    .min(60, 'Description must be at least 60 characters.')
+    .required('This field is mandatory'),
+});
 
 export default function EditTaskForm() {
   const dispatch = useDispatch();
@@ -68,7 +76,11 @@ export default function EditTaskForm() {
 
   return (
     <Wrapper>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
         <Form>
           <Title>Edit Task</Title>
           <Input name="title" placeholder="Title" />

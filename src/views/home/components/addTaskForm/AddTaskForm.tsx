@@ -1,4 +1,5 @@
 import { Formik, Form, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
 import { styled } from '@mui/material/styles';
 import { v4 as uuidv4 } from 'uuid';
 import { Input, Textarea } from '@/components/form';
@@ -19,6 +20,13 @@ const Title = styled('h1')(() => ({
   fontWeight: '500',
   marginBottom: '1.6rem',
 }));
+
+const validationSchema = Yup.object().shape({
+  title: Yup.string().required('This field is mandatory'),
+  description: Yup.string()
+    .min(60, 'Description must be at least 60 characters.')
+    .required('This field is mandatory'),
+});
 
 type FormValues = {
   title: string;
@@ -49,7 +57,11 @@ export default function AddTaskForm() {
   };
   return (
     <Wrapper>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
         <Form>
           <Title>Add a new Task</Title>
           <Input name="title" placeholder="Title" />

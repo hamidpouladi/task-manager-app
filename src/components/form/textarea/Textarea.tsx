@@ -20,7 +20,10 @@ const MuTextarea = styled(TextField)<TextFieldProps>(() => ({
       borderBottom: '0.1rem solid #000',
     },
   },
-  '& textarea': {},
+  '& .Mui-error': {
+    fontSize: '1.4rem',
+    marginLeft: '0',
+  },
 }));
 
 type Props = {

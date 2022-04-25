@@ -18,6 +18,10 @@ const MuInput = styled(TextField)<TextFieldProps>(() => ({
     fontSize: '1.4rem',
     boxSizing: 'border-box',
   },
+  '& .Mui-error': {
+    fontSize: '1.4rem',
+    marginLeft: '0',
+  },
 }));
 
 type Props = {

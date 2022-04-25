@@ -3,10 +3,11 @@ import * as Yup from 'yup';
 import { styled } from '@mui/material/styles';
 import { v4 as uuidv4 } from 'uuid';
 import { Input, Textarea } from '@/components/form';
-import Button from '@/components/button/iconButton';
+import IconButton from '@/components/button/iconButton';
 import { useDispatch } from '@/store';
 import { add as addTask } from '@/store/actions/task';
 import { Status } from '@/types';
+import AddIcon from '@/assets/icons/add-white.svg?component';
 
 const Wrapper = styled('div')(() => ({
   width: '100%',
@@ -66,7 +67,9 @@ export default function AddTaskForm() {
           <Title>Add a new Task</Title>
           <Input name="title" placeholder="Title" />
           <Textarea name="description" placeholder="Description" />
-          <Button type="submit">Add</Button>
+          <IconButton startIcon={<AddIcon />} type="submit">
+            Add
+          </IconButton>
         </Form>
       </Formik>
     </Wrapper>

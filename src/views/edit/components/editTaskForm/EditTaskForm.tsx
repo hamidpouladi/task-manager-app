@@ -4,11 +4,13 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { styled } from '@mui/material/styles';
 import { Input, Select, Textarea } from '@/components/form';
-import Button from '@/components/button/iconButton';
+import IconButton from '@/components/button/iconButton';
+import OutlinedButton from '@/components/button/outlinedButton';
 import { useDispatch, useStore } from '@/store';
 import { update as updateTask } from '@/store/actions/task';
 import { Status } from '@/types';
 import trackTaskHistory from '@/utils/trackTaskHistory';
+import EditIcon from '@/assets/icons/edit-white.svg?component';
 
 const Wrapper = styled('div')(() => ({
   width: '100%',
@@ -21,6 +23,13 @@ const Title = styled('h1')(() => ({
   fontSize: '1.8rem',
   fontWeight: '500',
   marginBottom: '1.6rem',
+}));
+
+const ActionWrapper = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  gap: '1.6rem',
 }));
 
 type FormValues = {
@@ -50,6 +59,10 @@ export default function EditTaskForm() {
       ...values,
     };
     dispatch(updateTask(task));
+    redirect('/');
+  };
+
+  const handleCancel = () => {
     redirect('/');
   };
 
@@ -93,7 +106,12 @@ export default function EditTaskForm() {
               value: status,
             }))}
           />
-          <Button type="submit">Edit</Button>
+          <ActionWrapper>
+            <IconButton startIcon={<EditIcon />} type="submit">
+              Edit
+            </IconButton>
+            <OutlinedButton onClick={handleCancel}>Cancel</OutlinedButton>
+          </ActionWrapper>
         </Form>
       </Formik>
     </Wrapper>

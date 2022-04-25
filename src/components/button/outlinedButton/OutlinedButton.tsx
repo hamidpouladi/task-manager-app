@@ -3,14 +3,15 @@ import { styled } from '@mui/material/styles';
 
 const StyledButton = styled(MuButton)<ButtonProps>(() => ({
   width: '100%',
-  color: '#fff',
-  border: '0.1rem solid #0368a6',
-  backgroundColor: '#0368a6',
+  color: '#ccc',
+  border: '0.1rem solid #ccc',
+  backgroundColor: '#fff',
   fontSize: '1.4rem',
   padding: '1.4rem 1.6rem',
   borderRadius: '.5rem',
   '&:hover': {
-    backgroundColor: '#01578c',
+    backgroundColor: '#0f0f0f0',
+    border: '0.1rem solid #ccc',
   },
   '& svg': {
     width: '1.4rem',
@@ -18,6 +19,6 @@ const StyledButton = styled(MuButton)<ButtonProps>(() => ({
   },
 }));
 
-export default function Button({ ...props }: ButtonProps) {
-  return <StyledButton variant="contained" {...props} />;
+export default function OutlinedButton({ ...props }: ButtonProps) {
+  return <StyledButton variant="outlined" {...props} />;
 }

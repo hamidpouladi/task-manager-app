@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -26,7 +27,7 @@ const MuCard = styled(Card)(() => ({
   },
 }));
 
-export default function Task({ title, description, status }: TaskType) {
+export default function Task({ id, title, description, status }: TaskType) {
   return (
     <MuCard>
       <CardContent sx={{ padding: 0 }}>
@@ -59,7 +60,7 @@ export default function Task({ title, description, status }: TaskType) {
             minWidth: '10rem',
           }}
         />
-        <IconButton aria-label="delete">
+        <IconButton component={Link} to={`/edit?${id}`}>
           <EditIcon />
         </IconButton>
       </CardActions>

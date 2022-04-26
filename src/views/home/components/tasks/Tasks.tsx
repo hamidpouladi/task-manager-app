@@ -7,8 +7,8 @@ const OuterWrapper = styled('div')(() => ({
   fontSize: '1.3rem',
   borderRadius: '2rem 2rem 0 0',
   backgroundColor: '#0368a6',
-  marginLeft: '-2.4rem',
-  marginRight: '-2.4rem',
+  // marginLeft: '-2.4rem',
+  // marginRight: '-2.4rem',
 }));
 
 const InnerWrapper = styled('div')(() => ({

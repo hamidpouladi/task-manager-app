@@ -14,7 +14,9 @@ const BaseLayout: FC<Props> = ({ children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <Container maxWidth={false}>{children}</Container>
+      <Container disableGutters maxWidth={false}>
+        {children}
+      </Container>
     </ThemeProvider>
   );
 };

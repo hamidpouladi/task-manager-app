@@ -27,6 +27,17 @@ const MuCard = styled(Card)(() => ({
   },
 }));
 
+const descStyles = {
+  fontSize: 13,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  display: '-webkit-box',
+  lineClamp: '3',
+  '-webkit-line-clamp': '3',
+  '-webkit-box-orient': 'vertical',
+  lineHeight: '1.8rem',
+};
+
 export default function Task({ id, title, description, status }: TaskType) {
   return (
     <MuCard>
@@ -38,7 +49,7 @@ export default function Task({ id, title, description, status }: TaskType) {
         >
           {title}
         </Typography>
-        <Typography sx={{ fontSize: 13 }} variant="body2">
+        <Typography sx={descStyles} variant="body2">
           {description}
         </Typography>
       </CardContent>

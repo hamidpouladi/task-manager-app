@@ -29,15 +29,30 @@ const Title = styled('div')(() => ({
   alignItems: 'center',
 }));
 
+const EmptyTasks = styled('p')(() => ({
+  color: '#000',
+  fontSize: '1.8rem',
+  lineHeight: '2.8rem',
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
+}));
+
 export default function Tasks() {
   const { tasks } = useStore();
   return (
     <OuterWrapper>
       <Title>Tasks</Title>
       <InnerWrapper>
-        {tasks.map((task) => (
-          <Task key={task.id} {...task} />
-        ))}
+        {tasks.length > 0 ? (
+          tasks.map((task) => <Task key={task.id} {...task} />)
+        ) : (
+          <EmptyTasks>
+            <span>You have nothing to do.</span>
+            <span>Go get some sleep.</span>
+          </EmptyTasks>
+        )}
       </InnerWrapper>
     </OuterWrapper>
   );

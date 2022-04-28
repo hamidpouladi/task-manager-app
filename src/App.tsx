@@ -9,15 +9,15 @@ import './App.css';
 function App() {
   return (
     <StoreProvider>
-      <BaseLayout>
-        <BrowserRouter>
+      <BrowserRouter>
+        <BaseLayout>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="edit" element={<EditPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </BrowserRouter>
-      </BaseLayout>
+        </BaseLayout>
+      </BrowserRouter>
     </StoreProvider>
   );
 }
